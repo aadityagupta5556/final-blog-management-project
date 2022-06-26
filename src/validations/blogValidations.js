@@ -18,7 +18,7 @@ const blogValidations = async function (req, res, next) {
         .status(400)
         .send({ status: false, msg: " Please enter title as a String" });
     data.title = data.title.trim();
-    let validTitle = /^\d*[a-zA-Z][a-zA-Z\d]*$/;
+    let validTitle = /^\d*[a-zA-Z][a-zA-Z\d\s]*$/;
     if (!validTitle.test(data.title))
       return res
         .status(400)
@@ -114,7 +114,7 @@ const updateValidations = async function (req, res, next) {
           .status(400)
           .send({ status: false, msg: " Please enter title as a String" });
       data.title = data.title.trim();
-      let validTitle = /^\w[a-zA-Z0-9.]*$/;
+      let validTitle = /^\d*[a-zA-Z][a-zA-Z\d\s]*$/;
       if (!validTitle.test(data.title))
         return res
           .status(400)

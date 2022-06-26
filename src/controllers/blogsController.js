@@ -139,18 +139,18 @@ const deleteBlogsByQuery = async function (req, res) {
         if(conditions.authorId != req.authorId) return res.status(403).send({ status: false, msg: "Author is not authorized to access this data"})      
       }
       if(conditions.category) {
-        if(typeof conditions.category !== 'string')return res.status(400).send({ status: false, msg: "Please Enter Category as a String" });
+       // if(typeof conditions.category !== 'string')return res.status(400).send({ status: false, msg: "Please Enter Category as a String" });
         filters.category=conditions.category;
       }
       if(conditions.tags) filters.tags={$all:conditions.tags};
       if(conditions.subcategory) filters.subcategory={$all:conditions.subcategory};
       if(conditions.isPublished) filters.isPublished=false;
 
-    //console.log(filters)
+    console.log(filters)
      
     let deleteBlogs = await blogsmodel.updateMany(filters,{ $set: { isDeleted: true, deletedAt: Date.now()}});   
     //let deleteBlogs= await blogsmodel.updateMany({isDeleted:true},{$set:{isDeleted:false}})
-    //console.log(deleteBlogs);
+    console.log(deleteBlogs);
     if (deleteBlogs.matchedCount == 0) {
       return res.status(404).send({ status: false, msg: "Blog Not Found" });
     }
