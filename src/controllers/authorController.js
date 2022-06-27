@@ -1,9 +1,7 @@
 const authormodel = require("../models/authorModel");
 const jwt =require('jsonwebtoken')
 
-// ### Author APIs /authors
-// - Create an author - atleast 5 authors
-// - Create a author document from request body.
+// ### Author API /authors
 
 const createauthor = async function (req, res) {                   
   try {

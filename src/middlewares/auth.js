@@ -28,11 +28,8 @@ const authorization = async function (req, res, next) {
     let token = req.headers["x-api-key"];
 
     let decodedToken = jwt.verify(token,"project1-AADI");
-    console.log(decodedToken)
 
     req.authorId = decodedToken.authorId; // assigning decoded token authorId value to authorId key in request
-
-    console.log(req.authorId)
 
     let blogId = req.params.blogId;
     
@@ -50,6 +47,7 @@ const authorization = async function (req, res, next) {
     next();  
 
   } catch (error) {
+    
     console.log(error);
     res.status(500).send({ status: false, msg: error.message });
   }
